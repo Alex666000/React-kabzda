@@ -3,7 +3,7 @@ import './App.css';
 import Accordion from "./components/Accordion/Accordion";
 import {Rating} from "./components/Rating/Rating";
 
-function App(props: any) {
+const App = (props: any) => {
     console.log('App rendering')
     return (
         <div className="App">
@@ -26,7 +26,7 @@ function App(props: any) {
             <Rating value={5 }/>
         </div>
     );
-}
+};;
 
 type PageTitlePropsType = {
     title: string
