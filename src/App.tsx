@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import {RatingValueType} from './components/Rating/Rating';
-import OnOff from './components/OnOff/onOff';
+import UnControlledAccordion from './components/UncontrolledAccordion/UnControlledAccordion';
 
 
 const App = (props: any) => {
@@ -9,13 +9,13 @@ const App = (props: any) => {
 
     const [ratingValue, setRatingValue] = useState<RatingValueType>(4)
     const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
-    const [on, setOn] = useState<boolean>(false)
+    const [switchOn, setSwitchOn] = useState<boolean>(false)
 
     return (
         <div className="App">
-            <OnOff
-                on={on}
-                onClick={ setOn}/>
+           {/* <OnOff
+                on={switchOn}
+                onClick={ setSwitchOn}/>*/}
 
             {/*<UncontrolledOnOff/>*/}
 
@@ -26,7 +26,7 @@ const App = (props: any) => {
                 onClick={setAccordionCollapsed}
             />*/}
 
-            {/*<UnControlledAccordion titleValue={'Menu'}/>*/}
+            <UnControlledAccordion titleValue={'Menu'}/>
             {/*<UnControlledRating />*/}
             {/*  <input/>
             <input checked={true} value="yo" type={'password'}/>

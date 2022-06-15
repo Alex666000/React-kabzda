@@ -8,7 +8,7 @@ type OnOffPropsType = {
 const OnOff = (props: OnOffPropsType) => {
     // useState - означает со старта сидит false, setOn функция которую если вызвать и передать ей новое значение она этим значением перезапишет on и произойдет перерисовка компоненты:
 
-    // let [on,setOn] = useState(false) // hook
+    let [on, setOn] = useState(false) // hook
 
     //задаем css стили в виде объектов:
     const onStyle = {
@@ -41,10 +41,20 @@ const OnOff = (props: OnOffPropsType) => {
 
     }
 
+    const onClicked = () => {
+        setOn(true)
+        props.onClick(true)
+    }
+    const offClicked = () => {
+        setOn(false)
+        props.onClick(false)
+    }
+
     return (
         <div>
-            <div style={onStyle} onClick={ () => {  props.onClick(!props.on) } }>on</div>
-            <div style={offStyle} onClick={ () => {  props.onClick(!props.on) } }>off</div>
+            <div style={onStyle} onClick={onClicked}>on</div>
+            <div style={offStyle} onClick={offClicked}>off
+            </div>
             <div style={indicatorStyle}></div>
         </div>
     );
