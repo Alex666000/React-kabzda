@@ -1,23 +1,33 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Rating, RatingValueType} from './components/Rating/Rating';
-import {UnControlledRating} from './components/UnControledRating/UnControledRating';
+import {RatingValueType} from './components/Rating/Rating';
+import OnOff from './components/OnOff/onOff';
 
 
 const App = (props: any) => {
     console.log('App rendering')
 
     const [ratingValue, setRatingValue] = useState<RatingValueType>(4)
+    const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
+    const [on, setOn] = useState<boolean>(false)
 
     return (
         <div className="App">
-            {/*<OnOff/>*/}
+            <OnOff
+                on={on}
+                onClick={ setOn}/>
+
+            {/*<UncontrolledOnOff/>*/}
 
             {/*<Rating value={ratingValue} onClick={setRatingValue}/>*/}
-            {/*<Accordion titleValue={'Menu'} collapsed={false}/>*/}
+            {/*<Accordion
+                titleValue={'Menu'}
+                collapsed={accordionCollapsed}
+                onClick={setAccordionCollapsed}
+            />*/}
 
             {/*<UnControlledAccordion titleValue={'Menu'}/>*/}
-            <UnControlledRating />
+            {/*<UnControlledRating />*/}
             {/*  <input/>
             <input checked={true} value="yo" type={'password'}/>
             <PageTitle title={'This is App component'}/>

@@ -3,25 +3,33 @@ import React from 'react';
 type AccordionPropsType = {
     titleValue: string
     collapsed: boolean
+    onClick: (val: boolean) => void
 }
 
 function Accordion(props: AccordionPropsType) {
     console.log('Accordion rendering')
+
     return <div>
-        <AccordionTitle title={props.titleValue}/>
-        {/*/!*Условный рендеринг: либо отрисуем компонент либо нет.  Выражение props.collapsed === false превратиться в true тогда <AccordionBody/> отрисуется ЭТО ЗАМЕНА ДЛИННОМУ IF  --  ELSE*!/ Если не свернут то покажи <AccordionBody/>*/}
+        <AccordionTitle
+            title={props.titleValue}
+            onClick={props.onClick}
+            value={props.collapsed}
+        />
         {!props.collapsed && <AccordionBody/>}
     </div>
 }
 
 type AccordionTitlePropsType = {
     title: string
+    onClick: (val: boolean) => void
+    value: boolean
+
 }
 
 function AccordionTitle(props: AccordionTitlePropsType) {
     console.log('AccordionTitle rendering')
     return <div>
-        <h3>---{props.title}---</h3>
+        <h3 onClick={ () => { props.onClick(!props.value) } }>---{props.title}---</h3>
     </div>
 }
 
