@@ -9,26 +9,24 @@ function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
 
     const [collapsed, setCollapsed] = useState(true)
 
-    return <div>
-        <AccordionTitle callback={setCollapsed(!collapsed)} title={props.titleValue}/><button onClick={() => {setCollapsed(!collapsed)
-        }}>TOGGLE
-        </button>
 
-        {/*/!*Условный рендеринг: либо отрисуем компонент либо нет.  Выражение props.collapsed === false превратиться в true тогда <AccordionBody/> отрисуется ЭТО ЗАМЕНА ДЛИННОМУ IF  --  ELSE*!/ Если не свернут то покажи <AccordionBody/>*/}
+
+    return <div>
+        <AccordionTitle title={props.titleValue} onClick={ () => { setCollapsed(!collapsed) } }/>
         {!collapsed && <AccordionBody/>}
     </div>
 }
 
 type AccordionTitlePropsType = {
     title: string
-    callback: (e: number) => void
+    onClick: () => void
 }
 
 function AccordionTitle(props: AccordionTitlePropsType) {
     console.log('AccordionTitle rendering')
 
     return <div>
-        <h3 onClick={ (e) => { props.callback() } }>---{props.title}---</h3>
+        <h3 onClick={ ()=> {props.onClick()}}>---{props.title}---</h3>
     </div>
 }
 
