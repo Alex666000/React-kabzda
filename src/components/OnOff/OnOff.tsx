@@ -5,11 +5,9 @@ type OnOffPropsType = {
     onClick: (val: boolean) => void
 }
 
-const OnOff = (props: OnOffPropsType) => {
+export const OnOff = (props: OnOffPropsType) => {
     // useState - означает со старта сидит false, setOn функция которую если вызвать и передать ей новое значение она этим значением перезапишет on и произойдет перерисовка компоненты:
-
     let [on, setOn] = useState(false) // hook
-
     //задаем css стили в виде объектов:
     const onStyle = {
         width: '30px',
@@ -38,7 +36,6 @@ const OnOff = (props: OnOffPropsType) => {
         display: 'inline-block',
         marginLeft: '5px',
         backgroundColor: props.on ? 'green' : 'red'
-
     }
 
     const onClicked = () => {
@@ -60,4 +57,3 @@ const OnOff = (props: OnOffPropsType) => {
     );
 };
 
-export default OnOff;

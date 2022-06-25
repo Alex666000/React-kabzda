@@ -30,9 +30,7 @@ type StarPropsType = {
 
 function Star(props: StarPropsType) {
     console.log('Star rendered')
-    return <span onClick={() => {
-        debugger
-        props.onClick(props.value)
-    } }>{props.selected ? <b>star </b> : ' star '}</span>
+
+    return <span onClick={() => {props.onClick(props.value)} }>{props.selected ? <b>star </b> : ' star '}</span>
 }
 

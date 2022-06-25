@@ -4,12 +4,9 @@ type UncontrolledAccordionPropsType = {
     titleValue: string
     // collapsed: boolean // вместо коллапса сделать локальный стейт
 }
-function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
+export function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
     console.log('Accordion rendering')
-
     const [collapsed, setCollapsed] = useState(true)
-
-
 
     return <div>
         <AccordionTitle title={props.titleValue} onClick={ () => { setCollapsed(!collapsed) } }/>
@@ -40,6 +37,3 @@ function AccordionBody() {
         </ul>
     </div>
 }
-
-
-export default UncontrolledAccordion;

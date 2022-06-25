@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 
 type OnOffPropsType = {
+    defaultOn?: boolean
+    onChange: (on: boolean) => void
     // on: boolean
 }
 
 export const UncontrolledOnOff = (props: OnOffPropsType) => {
-    let [on,setOn] = useState(false)
-
+    let [on,setOn] = useState(props.defaultOn ? props.defaultOn : false)
     //задаем css стили в виде объектов:
     const onStyle = {
         width: '30px',
@@ -43,7 +44,6 @@ export const UncontrolledOnOff = (props: OnOffPropsType) => {
             <div
                 style={onStyle}
                 onClick={ () => { setOn(!on) } }
-
             >on</div>
             <div style={offStyle} onClick={ () => { setOn(!on)} }>off</div>
             <div style={indicatorStyle}></div>
