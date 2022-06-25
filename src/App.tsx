@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import './App.css';
 import {Rating, RatingValueType} from './components/Rating/Rating';
 import Accordion from './components/Accordion/Accordion';
-import {UncontrolledAccordion} from './components/UncontrolledAccordion/UnControlledAccordion';
-import {OnOff} from './components/OnOff/OnOff';
 import {UncontrolledOnOff} from './UncontrolledOnOff/UncontrolledOnOff';
 import {UnControlledRating} from './components/UnControledRating/UnControledRating';
+import {UncontrolledAccordion} from './components/UncontrolledAccordion/UnControlledAccordion';
+import {OnOff} from './components/OnOff/OnOff';
 
 
 const App = (props: any) => {
@@ -17,11 +17,11 @@ const App = (props: any) => {
 
     return (
         <div className="App">
-            <Accordion titleValue={'Menu'} collapsed onClick={x=>x}/>
+            <Accordion titleValue={'Users'} collapsed onClick={setAccordionCollapsed}/>
             <UncontrolledAccordion titleValue={'Menu'}/>
-            <OnOff on={true} onClick={x=>x}/>
-            <UncontrolledOnOff defaultOn onChange={x=>x}/>
-            <Rating value={0} onClick={x => x}/>
+            <OnOff on={switchOn} onClick={setSwitchOn}/>
+            <UncontrolledOnOff defaultOn={true} onChange={x=>x}/>
+            <Rating value={ratingValue} onClick={setRatingValue}/>
             <UnControlledRating onChange={x => x}/>
         </div>
     );
