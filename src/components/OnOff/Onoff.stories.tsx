@@ -10,11 +10,12 @@ export default {
 // сценарии:
 const callback = action('on or off clicked')
 
-export const OnMode: ComponentStory<typeof OnOff> = (args) => <OnOff on={true} onClick={callback}/>;
-export const OffMode: ComponentStory<typeof OnOff> = (args) => <OnOff on={false} onClick={callback}/>;
+export const OnMode: ComponentStory<typeof OnOff> = (args) => <OnOff on={true} onChange={callback}/>;
+export const OffMode: ComponentStory<typeof OnOff> = (args) => <OnOff on={false} onChange={callback}/>;
 export const ModeChanging: ComponentStory<typeof OnOff> = (args) => {
     const [value, setValue] = useState<boolean>(true)
-    return <OnOff on={value} onClick={setValue}/>;
+
+    return <OnOff on={value} onChange={setValue}/>;
 }
 
 
