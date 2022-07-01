@@ -11,21 +11,33 @@ export default {
 } as ComponentMeta<typeof Accordion>;
 // сценарии:
 const callback = action('Accordion mode change event fired')
-// пример с использованием шаблона - заменим старые компоненты на с использованием шаблона = переход от 5 версии к 6 версии
-const Template: ComponentStory<typeof Accordion> = (args: AccordionPropsType) => <Accordion {...args} />;
-export const MenuCollapsedMode2 = Template.bind({})
-MenuCollapsedMode2.args = {
-
-}
+const onClickCallback = action('some item was clicked')
 
 
+export const MenuCollapsedMode: ComponentStory<typeof Accordion> = (args) => <Accordion onClick={onClickCallback} titleValue={'Menu'} collapsed onChange={callback} items={[]}/>; /*передали пустой массив т.к меню collapsed - свернуто можно просто пустой передать...*/
 
 
-export const MenuCollapsedMode: ComponentStory<typeof Accordion> = (args) => <Accordion titleValue={'Menu'} collapsed onClick={callback}/>;
-export const UsersCollapsedMode: ComponentStory<typeof Accordion> = (args) => <Accordion titleValue={'Users'} collapsed={false} onClick={callback}/>;
+export const UsersCollapsedMode: ComponentStory<typeof Accordion> = (args) => <Accordion onClick={onClickCallback} titleValue={'Users'} collapsed={false} onChange={callback} items={[
+    {title:"Dima", value: 1},
+    {title:"Valera", value:2 } ,
+    {title:"Artem", value:3 },
+    {title:"Victor", value:4 }
+]}/>;
+
+
 export const ModeChanging: ComponentStory<typeof Accordion> = (args) => {
     const [value, setValue] = useState<boolean>(true)
-    return  <Accordion titleValue={'Users'} collapsed={value} onClick={() => {setValue(!value)} }/>
+    return  <Accordion
+        items={[
+        {title:"Dima", value: 1},
+        {title:"Valera", value:2 },
+        {title:"Artem", value:3 },
+        {title:"Victor", value:4 }
+    ]}
+        titleValue={'Users'}
+        collapsed={value}
+        onChange={() => {setValue(!value) }}
+        onClick={(value: any) => {alert(`user with ID ${value} should be happy`)}} />
 }
 
 

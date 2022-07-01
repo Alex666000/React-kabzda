@@ -16,7 +16,7 @@ export function UnControlledRating(props: RatingProps) {
 
     return (
         <div>
-            {/* кликает по 4 звезде подсветяться все предыдущие:*/}
+            {/* кликаем по 4 звезде - подсветяться все предыдущие:*/}
             <Star selected={value > 0} setValue={() => {setValue(1); props.onChange(1)} }/>
             <Star selected={value > 1} setValue={() => {setValue(2); props.onChange(2)} } />
             <Star selected={value > 2} setValue={() => {setValue(3); props.onChange(3)} }/>
