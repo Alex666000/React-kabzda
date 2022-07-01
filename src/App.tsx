@@ -7,7 +7,6 @@ import {UnControlledRating} from './components/UnControledRating/UnControledRati
 import {UncontrolledAccordion} from './components/UncontrolledAccordion/UnControlledAccordion';
 import {OnOff} from './components/OnOff/OnOff';
 
-
 const App = (props: any) => {
     console.log('App rendering')
 
@@ -26,15 +25,12 @@ const App = (props: any) => {
         </div>
     );
 };
-;
 
 type PageTitlePropsType = {
     title: string
 }
-
 function PageTitle(props: PageTitlePropsType) {
     console.log('PageTitle rendered')
     return <h1>{props.title}</h1>
 }
-
 export default App;

@@ -13,9 +13,10 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 
-// шаблон
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
-// сценарий 1
+// шаблон нам дали пропсы мы их перенаправили в кнопку = шаблон = контейнерная компонента
+const Template: ComponentStory<typeof Button> = (props) => <Button {...props} />;
+// сценарий 1 bind - создаст копию функции с забинженным контекстом
+
 export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
