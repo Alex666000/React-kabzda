@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 type OnOffPropsType = {
     defaultOn?: boolean
-    onChange: (on: boolean) => void
+    onChange?: (on: boolean) => void
     // on: boolean
 }
 
