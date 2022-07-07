@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
 import {Accordion} from './components/Accordion/Accordion';
+import {UncontrolledAccordion} from './components/UncontrolledAccordion/UnControlledAccordion';
+import {UncontrolledOnOff} from './UncontrolledOnOff/UncontrolledOnOff';
 
 const App = (props: any) => {
     console.log('App rendering')
@@ -11,9 +13,9 @@ const App = (props: any) => {
 
     return (
         <div className="App">
-            <Accordion titleValue={'Menu'}
-                       collapsed={accordionCollapsed}
-                       onChange={()=> {setAccordionCollapsed(!accordionCollapsed)} } />
+            {/*<Accordion titleValue={'Menu'}*/}
+            {/*           collapsed={accordionCollapsed}*/}
+            {/*           onChange={()=> {setAccordionCollapsed(!accordionCollapsed)} } />*/}
             {/*<Accordion onChange={()=> {setAccordionCollapsed(!accordion)} } titleValue={'Users'} collapsed onClick={() => setAccordionCollapsed(false)} items={[*/}
             {/*    {title:"Dima", value: 1},*/}
             {/*    {title:"Valera", value:2 } ,*/}
@@ -21,8 +23,9 @@ const App = (props: any) => {
             {/*    {title:"Victor", value:4 }*/}
             {/*]}/>*/}
            {/*{ <UncontrolledAccordion titleValue={'Menu'}/>*/}
-           {/* <OnOff on={switchOn} onChange={setSwitchOn}/>*/}
-            {/*<UncontrolledOnOff defaultOn onChange={x=>x}/>}*/}
+           {/* <OnOff on={switchOn} onChange={setSwitchOn}/>*/
+            <UncontrolledOnOff defaultOn onChange={x=>x} />
+
             {/*<Rating value={ratingValue} onClick={setRatingValue}/>*/}
             {/*<UnControlledRating onChange={()=>{setRatingValue(5)} }/>*/}
         </div>

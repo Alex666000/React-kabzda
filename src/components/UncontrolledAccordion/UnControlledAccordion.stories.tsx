@@ -11,7 +11,7 @@ export default {
 // сценарии:
 const callback = action('Accordion mode change event fired')
 
-export const MdeChanging: ComponentStory<typeof UncontrolledAccordion> = (args) => {
+export const ModeChanging: ComponentStory<typeof UncontrolledAccordion> = (args) => {
 // раз компонента неконтролируема, то useState не нужен во внешнем мире так как внутрь его нельзя все равно передать - ВНТРИ КОМПОНЕНТЫ ЕСТЬ СВОЙ ЛОКАЛЬНЫЙ "СТЕЙТ" который его локально меняет
 return  <UncontrolledAccordion titleValue={'Users'} />
 }

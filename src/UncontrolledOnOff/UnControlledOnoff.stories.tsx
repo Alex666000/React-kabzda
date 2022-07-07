@@ -7,11 +7,16 @@ export default {
     title: 'UncontrolledOnOff',
     component: UncontrolledOnOff
 } as ComponentMeta<typeof UncontrolledOnOff>;
+
 // сценарии:
 const callback = action('on or off clicked')
 
 export const OnMode: ComponentStory<typeof UncontrolledOnOff> = (args) => <UncontrolledOnOff defaultOn={true}  onChange={callback}/>;
+
 export const OffMode: ComponentStory<typeof UncontrolledOnOff> = (args) => <UncontrolledOnOff defaultOn={false}  onChange={callback}/>;
+
+export const DefaultValue: ComponentStory<typeof UncontrolledOnOff> = (args) => <input defaultValue={'yo'}/>;
+
 export const BugMode: ComponentStory<typeof UncontrolledOnOff> = (args) => <div>Unsync when change defaultValue</div>
 
 
