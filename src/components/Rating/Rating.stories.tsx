@@ -9,15 +9,16 @@ export default {
         backgroundColor: {control: 'color'},
     },
 } as ComponentMeta<typeof Rating>;
-// сценарии:
-export const EmptyRating: ComponentStory<typeof Rating> = (args) => <Rating value={0} onClick={x => x} />;
-export const Rating1: ComponentStory<typeof Rating> = (args) => <Rating value={1} onClick={x => x} />;
-export const Rating2: ComponentStory<typeof Rating> = (args) => <Rating value={2} onClick={x => x} />;
-export const Rating3: ComponentStory<typeof Rating> = (args) => <Rating value={3} onClick={x => x} />;
-export const Rating4: ComponentStory<typeof Rating> = (args) => <Rating value={4} onClick={x => x} />;
-export const Rating5: ComponentStory<typeof Rating> = (args) => <Rating value={5} onClick={x => x} />;
-export const RatingChanging: ComponentStory<typeof Rating> = (args) => {
-    const [rating, setRating] = useState<RatingValueType>(5)
-    return <Rating value={rating} onClick={setRating} />;
+// сценарии - в функциях тестируем нашу компоненту и ее вернем:
+export const EmptyRating = () => <Rating value={0} onClick={x=>x}/>
+export const Rating1 = () => <Rating value={1} onClick={x=>x}/>
+export const Rating2 = () => <Rating value={2} onClick={x=>x}/>
+export const Rating3 = () => <Rating value={3} onClick={x=>x}/>
+export const Rating4 = () => <Rating value={4} onClick={x=>x}/>
+export const Rating5 = () => <Rating value={5} onClick={x=>x}/>
+export const ChangeRating = () => {
+const [rating, setRating] = useState(5)
+    return <Rating value={rating} onClick={ (value: RatingValueType) => setRating(value)}/>
 }
+
 

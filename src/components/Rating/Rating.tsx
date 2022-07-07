@@ -4,7 +4,7 @@ export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5
 
 type RatingProps = {
     value: RatingValueType
-    onClick: (num: RatingValueType) => void
+    onClick: (value: RatingValueType) => void
 }
 
 export function Rating(props: RatingProps) {
@@ -24,7 +24,7 @@ export function Rating(props: RatingProps) {
 
 type StarPropsType = {
     selected: boolean
-    onClick: (num: RatingValueType) => void
+    onClick: (value: RatingValueType) => void
     value: RatingValueType
 }
 
