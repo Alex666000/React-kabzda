@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useRef, useState} from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {Button} from './Button';
+import {action} from '@storybook/addon-actions';
 
 export default {
     title: 'input_cat',
@@ -36,5 +37,38 @@ export const GetValueOfUncontrolledInputByButtonPress = () => {
 
     return <><input ref={inputRef} id={'inputId'}/><button onClick={save}>sav</button>actual value: {value}</>
 }
+export const MainControlInput = () =>  {
+    const [parentValue, setParentValue] = useState("")
+
+    return <input
+        value={parentValue}
+        onChange={(e) => {setParentValue(e.currentTarget.value)}}/>
+}
+
+export const ControlCheckbox = () => {
+    const [parentValue, setParentValue] = useState(true)
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setParentValue(e.currentTarget.checked)
+    }
+
+    return <input
+        type={"checkbox"}
+        checked={parentValue}
+        onChange={onChange}/>
+}
+
+export const ControlSelect = () => {
+    const [parentValue, setParentValue] = useState<string | undefined>('2')
+const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  setParentValue(e.currentTarget.value)
+}
+    return <select value={parentValue} onChange={onChange}>
+        <option>None</option>
+        <option value={1}>Minsk</option>
+        <option value={2}>Moscow</option>
+        <option value={3}>Kiev</option>
+    </select>
+}
+
 
 
