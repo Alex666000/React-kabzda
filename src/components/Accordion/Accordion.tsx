@@ -2,7 +2,7 @@ import React from 'react';
 
 type ItemType = {
     title: string
-    value: any // что угодно, если сообщим родителю наверх что что-то кликнуто - ЛЮБОГО ТИПА ДАННЫХ - ANY УДОБНО ТУТ...
+    value: any
 }
 
 export type AccordionPropsType = {
@@ -11,14 +11,13 @@ export type AccordionPropsType = {
     /**
      * Elements should be not collapsed
      */
-    items?: ItemType[]
+    items: ItemType[]
     onChange: () => void
     /**
      * Color optional
      */
-    color?: string
     onClick: (value: any) => void
-
+    color?: string
 }
 
 export function Accordion(props: AccordionPropsType) {
@@ -30,10 +29,9 @@ export function Accordion(props: AccordionPropsType) {
             onChange={props.onChange}
             color={props.color}
 
-            onClick={props.onClick}
             // value={props.collapsed}
         />
-        {!props.collapsed && <AccordionBody/>}
+        {!props.collapsed && <AccordionBody onClick={props.onClick} items={props.items}/>}
     </div>
 }
 
@@ -41,7 +39,7 @@ type AccordionTitlePropsType = {
     title: string
     color?: string
     onChange: () => void
-    onClick: (val: boolean) => void
+    // onClick: (val: boolean) => void
     // value: boolean
 
 }
@@ -52,22 +50,26 @@ function AccordionTitle(props: AccordionTitlePropsType) {
     return <div>
 
         <h3 style={{color: props.color ? props.color : 'black'}}
-            onClick={ (e) => { props.onChange() } }>---{props.title}---</h3>
+            onClick={(e) => {
+                props.onChange()
+            }}>---{props.title}---</h3>
     </div>
 }
 
-function AccordionBody() {
+type AccordionBodyPropsType = {
+   items: ItemType[]
+    onClick: (value: any) => void
+
+}
+
+function AccordionBody(props: AccordionBodyPropsType) {
     console.log('AccordionBody rendering')
 
-    return <div>
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            {/*если меняется СОСТАВ массива или происходит его СОРТИРОВКА index нельзя использовать*/}
-            {/*{props.items.map((i, index) => <li onChange={()=> {props.onChange()} } onClick={()=> {props.onClick(i.value)} } key={index}>{i.title} </li>)}*/}
+    return <ul>
+        {props.items.map((i, index) => <li onClick={ () => {props.onClick(i.value)} } key={index}>{i.title}</li>) }
         </ul>
-    </div>
+
 }
+
 
 

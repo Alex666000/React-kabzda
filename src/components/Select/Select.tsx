@@ -2,16 +2,16 @@ import React from 'react';
 
 type ItemType = {
     title: string
-    value: any // что угодно, если сообщим родителю наверх что что-то кликнуто - любого типа данных
+    value: any
 }
 
-type SelectProps = {
+type SelectPropsType = {
     value: any
     onChange: (value: any) => void
     items: ItemType[]
 }
 
-export function Select(props: SelectProps) {
+export function Select(props: SelectPropsType) {
     console.log('Select rendering')
 
     return (
@@ -19,10 +19,6 @@ export function Select(props: SelectProps) {
             <div>
                 {/*{props.items.find(item => item.value===props.value)}*/}
             </div>
-            {/*{props.map(item => <div>{item.title}</div>)}*/}
-
-            {/*подсветка звездочек в рейтинге со знаком больше делается:*/}
-            {/*{props.map(i => <div>{i.title}</div>)}*/}
         </div>
     );
 }

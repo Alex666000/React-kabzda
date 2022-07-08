@@ -13,7 +13,7 @@ const Colors = {
         category: 'All colors',
     }
 }*/
-const GetCategoryObj = (category: 'All_colors_cat' | 'Events_cat' | 'Main (other)' ) => ({
+const GetCategoryObj = (category: 'All_colors_cat' | 'Events_cat' | 'Main (other)') => ({
     table: {
         category: category,
     }
@@ -26,7 +26,7 @@ export default {
         // свойства настроек:
         color: {
             control: 'color',
-           ...GetCategoryObj('All_colors_cat')
+            ...GetCategoryObj('All_colors_cat')
         },
         onChange: {
             ...GetCategoryObj('Events_cat')
@@ -65,12 +65,7 @@ MenuCollapsedMode.args = {
     ...callbackProps,
     titleValue: 'Menu',
     collapsed: true,
-    //  ---начало--- деструктуризировали повторяющийся код рефакторинг
-    // onChange: ()=> callback,
-    // onClick: ()=> onClickCallback
-    // ---конец--- деструктуризировали повторяющийся код рефакторинг
-
-    // items: [],
+    items: [],
 }
 // 2 показаны - пользователи
 export const UsersUnCollapsedMode = Template.bind({})
@@ -78,25 +73,29 @@ UsersUnCollapsedMode.args = {
     ...callbackProps,
     titleValue: 'Users',
     collapsed: false,
-    //     items={[
-    //     {title:"Dima", value: 1},
-    //     {title:"Valera", value:2 } ,
-    //     {title:"Artem", value:3 },
-    //     {title:"Victor", value:4 }
-    // ]};
+    items: [
+        {title: 'Dima', value: 1},
+        {title: 'Valera', value: 2},
+        {title: 'Artem', value: 3},
+        {title: 'Victor', value: 4},
+    ],
 }
 // 3 режим переключения:
 export const ModeChanging: ComponentStory<typeof Accordion> = (args) => {
     const [value, setValue] = useState<boolean>(true)
 
-    return <Accordion {...args} collapsed={value}  onChange={() => {setValue(!value)}}
-                              //     items={[
-        //     {title:"Dima", value: 1},
-        //     {title:"Valera", value:2 },
-        //     {title:"Artem", value:3 },
-        //     {title:"Victor", value:4 }
-        // ]}
-        // onClick={(value: any) => {alert(`user with ID ${value} should be happy`)}}
+    return <Accordion {...args}
+                      collapsed={value}
+                      onChange={() => {
+                          setValue(!value)
+                      }}
+                      items={[
+                          {title: 'Dima', value: 1},
+                          {title: 'Valera', value: 2},
+                          {title: 'Artem', value: 3},
+                          {title: 'Victor', value: 4},
+                      ]}
+                      onClick={(id) => alert(`user ${value} with ${id}`)}
     />
 }
 ModeChanging.args = {
@@ -105,27 +104,9 @@ ModeChanging.args = {
         {title: 'Dima', value: 1},
         {title: 'Valera', value: 2},
         {title: 'Artem', value: 3},
-        {title: 'Victor', value: 4}
+        {title: 'Victor', value: 4},
     ],
-    onClick: () => {
-        alert(`user with ID`)
-    }
 }
-// если пользователей хотим получить с сервера, то loaders:
-
-// const Template: ComponentStory<typeof Accordion> = (args: AccordionPropsType, {loaded: {items}} ) => <Accordion {...args} {...items} />;
-
-/*ModeChanging.loaders = [
-        async () => ({
-            items: (await Promise.resolve([
-                {title: 'Dima', value: 1},
-                {title: 'Valera', value: 2},
-                {title: 'Artem', value: 3},
-                {title: 'Victor', value: 4}
-            ]))
-        })
-
-]*/
 
 
 
