@@ -1,16 +1,23 @@
 import React from 'react';
 
-// type ItemType = {
-//     title: string
-//     value: any // что угодно, если сообщим родителю наверх что что-то кликнуто - ЛЮБОГО ТИПА ДАННЫХ - ANY УДОБНО ТУТ...
-// }
+type ItemType = {
+    title: string
+    value: any // что угодно, если сообщим родителю наверх что что-то кликнуто - ЛЮБОГО ТИПА ДАННЫХ - ANY УДОБНО ТУТ...
+}
 
 export type AccordionPropsType = {
     titleValue: string
     collapsed: boolean
-    // items: ItemType[]
+    /**
+     * Elements should be not collapsed
+     */
+    items?: ItemType[]
     onChange: () => void
-    // onClick: (value: any) => void
+    /**
+     * Color optional
+     */
+    color?: string
+    onClick: (value: any) => void
 
 }
 
@@ -21,8 +28,9 @@ export function Accordion(props: AccordionPropsType) {
         <AccordionTitle
             title={props.titleValue}
             onChange={props.onChange}
+            color={props.color}
 
-            // onClick={props.onClick}
+            onClick={props.onClick}
             // value={props.collapsed}
         />
         {!props.collapsed && <AccordionBody/>}
@@ -31,8 +39,9 @@ export function Accordion(props: AccordionPropsType) {
 
 type AccordionTitlePropsType = {
     title: string
+    color?: string
     onChange: () => void
-    // onClick: (val: boolean) => void
+    onClick: (val: boolean) => void
     // value: boolean
 
 }
@@ -41,7 +50,9 @@ function AccordionTitle(props: AccordionTitlePropsType) {
     console.log('AccordionTitle rendering')
 
     return <div>
-        <h3 onClick={ (e) => { props.onChange() } }>---{props.title}---</h3>
+
+        <h3 style={{color: props.color ? props.color : 'black'}}
+            onClick={ (e) => { props.onChange() } }>---{props.title}---</h3>
     </div>
 }
 
