@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
+import styles from './Select.module.css'
 
 type ItemType = {
     title: string
-    value: any
+    value?: any
 }
 
 type SelectPropsType = {
@@ -12,13 +13,42 @@ type SelectPropsType = {
 }
 
 export function Select(props: SelectPropsType) {
-    console.log('Select rendering')
+    const [active, setActive] = useState(false)
+    const [hovered, setHovered] = useState(props.value)
+    const selectedItem = props.items.find(i => i.value === props.value)
+    const hoveredItem = props.items.find(i => i.value === hovered)
+    const toggleItems = () => {
+        setActive(!active)
+    }
+    const onItemClick = (value: any) => {
+        props.onChange(value);
+        toggleItems()
+    }
 
     return (
-        <div>
-            <div>
-                {/*{props.items.find(item => item.value===props.value)}*/}
+        <>
+            <select>
+                <option value={''}>Minsk</option>
+                <option value={''}>Moscow</option>
+                <option value={''}>Kiev</option>
+            </select>
+            {/*класс select всегда, а класс active если активен элемент*/}
+            <div className={styles.select}>
+                <div>
+                    <span className={styles.main} onClick={toggleItems}>
+                        {selectedItem && selectedItem.title} </span>
+                    {/*элементы*/}
+                    {active && <div className={styles.items}>
+                        {props.items.map(i => <div className={styles.item + '' + (hovered === i ? styles.selected : '')}
+                            key={i.value}
+                            onClick={onItemClick}
+                        >{i.title}</div>)}
+                    </div>
+                    }
+
+
+                </div>
             </div>
-        </div>
+        </>
     );
 }
