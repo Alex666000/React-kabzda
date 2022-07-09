@@ -1,10 +1,8 @@
 import React from 'react';
-
 type ItemType = {
     title: string
     value: any
 }
-
 export type AccordionPropsType = {
     titleValue: string
     collapsed: boolean
