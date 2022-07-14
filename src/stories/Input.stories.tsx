@@ -14,7 +14,7 @@ export const ControlledInput = () => <input value="It-cat-incubator"/>
 export const TrackUncontrolledInput = () => {
     const [value, setValue] = useState('')
     const onInputChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
-        e.currentTarget.value;
+        // e.currentTarget.value;
         setValue(e.currentTarget.value);
     }
 
