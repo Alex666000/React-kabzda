@@ -1,9 +1,11 @@
-import React, {useMemo, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 
 export default {
     title: 'useMemo',
-
 }
+
+// useMemo:
+
 // 1 сценарий использования: предотвращать чрезмерное напряжение процессора батареи мобильника которое приводит к визуальной задержке, разрядке батареи, нагревания устройства и тд
 export const DifficultCounting = () => {
     const [a, setA] = useState<number>(0)
@@ -25,7 +27,6 @@ export const DifficultCounting = () => {
         }
         return tempResultA
     }, [a])
-
 
     for (let i = 0; i <= a; i++) {
         resultB = resultB * i
@@ -76,3 +77,51 @@ export const HelpsToReactMemo = () => {
         <Users users={newArray}/>
     </>
 }
+
+// UseCallback:
+export const LikeUseCallback = () => {
+    console.log('LikeUseCallback...')
+
+    // счетчик: его увеличение заставляет локальный стейт перерисовываться, но книги то не меняются!
+    const [counter, setCounter] = useState(0)
+    const [books, setBooks] = useState(['React', 'JS', 'HTML', 'CSS'])
+
+    // запомни функцию пока не изменяться книги и выплюни ее наружу:
+    // если нет зависимости "закешированная" функция будет работать со старыми данными
+    const memoizedAddBook = useMemo(() => {
+        return () => {
+            const newUsers = [...books, 'Angular' + new Date().getTime()]
+            setBooks(books)
+        }
+    }, [books])
+// в useCallback() просто передаем ту функцию которую надо запомнить:
+    const memoizedAddBook2 = useCallback(() => {
+        const newUsers = [...books, 'Angular' + new Date().getTime()]
+        setBooks(books)
+    }, [books])
+
+    return <>
+        <button onClick={() => setCounter(counter + 1)}>+</button>
+        {counter}
+        <Book
+            // засунем "закэшированную" функцию в addBook:
+            // addBook={addBook}/>
+            addBook={memoizedAddBook2}/>
+    </>
+}
+const BooksSecret = (props: {
+    // books: Array<string>
+    addBook: () => void
+}) => {
+    console.log('Books')
+
+    return <div>
+        <button onClick={() => props.addBook()}>add_book</button>
+
+        {
+            // props.books.map((book, i) => <div key={i}>{book}</div>)
+        }
+    </div>
+}
+// вернула КК которое следит нужно ли перерисовывать Books
+const Book = React.memo(BooksSecret)
