@@ -1,0 +1,38 @@
+import React, {useEffect, useMemo, useState} from 'react';
+
+export default {
+    title: 'useEffect',
+    // component: Button,
+}
+
+export const SimpleExample1 = () => {
+    const [fake, setFake] = useState(1)
+    const [counter, setCounter] = useState(1)
+
+    useEffect(() => {
+
+        console.log('Сработает при каждом "рендере" Компоненты')
+        // сделаем title коунтером:
+        document.title = counter.toString()
+        // api.getUsers().then
+        // setInterval
+        // indexedDB - работа с БД локальной в браузере
+        // обращение к документу document.getElementById
+        // изменение title документа на вкладке браузера document.title = "User"
+    },)
+    useEffect(() => {
+        console.log('Сработает только один раз при вмонтировании К аналог CDM')
+        document.title = counter.toString()
+    }, [])
+    useEffect(() => {
+
+        console.log('Когда зависимость меняется')
+        document.title = counter.toString()
+    }, [counter])
+
+    return <>
+        Hello, {counter} {fake}
+        <button onClick={() => setCounter(counter + 1)}>+</button>
+        <button onClick={() => setFake(fake + 1)}>+</button>
+    </>
+}
