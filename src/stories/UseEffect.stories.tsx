@@ -8,9 +8,7 @@ export default {
 export const SimpleExample1 = () => {
     const [fake, setFake] = useState(1)
     const [counter, setCounter] = useState(1)
-
     useEffect(() => {
-
         console.log('Сработает при каждом "рендере" Компоненты')
         // сделаем title коунтером:
         document.title = counter.toString()
@@ -32,7 +30,45 @@ export const SimpleExample1 = () => {
 
     return <>
         Hello, {counter} {fake}
-        <button onClick={() => setCounter(counter + 1)}>+</button>
-        <button onClick={() => setFake(fake + 1)}>+</button>
+        <button onClick={() => setCounter(counter + 1)}>counter+</button>
+        <button onClick={() => setFake(fake + 1)}>fake+</button>
     </>
 }
+// 2
+export const SetTimeoutExample1 = () => {
+    const [fake, setFake] = useState(1)
+    const [counter, setCounter] = useState(1)
+// поменяй title всего 1 раз:
+    /*
+     useEffect(() => {
+        setTimeout(() => {
+            console.log('SetTimeout')
+            document.title = counter.toString()
+        }, 1000)
+    }, [])  -- так как пустая зависимость
+     */
+
+    // поменяем title каждый раз при изменении counter - перезапускай эффект - если поменяем fake,то эффект не перезапуститься :
+
+    /*useEffect(() => {
+        setTimeout(() => {
+            console.log('SetTimeout')
+            document.title = counter.toString()
+        }, 1000)
+    }, [counter])*/
+
+/*    раскоментируй и часики будут
+   useEffect(() => {
+   setInterval(() => {
+       console.log('Tick...' + counter)
+   setCounter(state => state + 1)
+   }, 100000)
+ }, [counter])*/
+
+    return <>
+        Hello, counter: {counter}  - fake: {fake}
+        {/*<button onClick={() => setCounter(counter + 1)}>counter+</button>*/}
+        {/*<button onClick={() => setFake(fake + 1)}>fake+</button>*/}
+    </>
+}
+
