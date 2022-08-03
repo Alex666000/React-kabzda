@@ -57,7 +57,7 @@ export const SetTimeoutExample1 = () => {
         }, 1000)
     }, [counter])*/
 
-/*    раскоментируй и часики будут
+/* раскоментируй и часики будут
    useEffect(() => {
    setInterval(() => {
        console.log('Tick...' + counter)
