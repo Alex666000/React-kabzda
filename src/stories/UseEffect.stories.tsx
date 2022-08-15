@@ -34,6 +34,7 @@ export const SimpleExample1 = () => {
         <button onClick={() => setFake(fake + 1)}>fake+</button>
     </>
 }
+
 // 2
 export const SetTimeoutExample1 = () => {
     const [fake, setFake] = useState(1)
@@ -57,18 +58,41 @@ export const SetTimeoutExample1 = () => {
         }, 1000)
     }, [counter])*/
 
-/* раскоментируй и часики будут
-   useEffect(() => {
-   setInterval(() => {
-       console.log('Tick...' + counter)
-   setCounter(state => state + 1)
-   }, 100000)
- }, [counter])*/
+    /* раскоментируй и часики будут
+       useEffect(() => {
+       setInterval(() => {
+           console.log('Tick...' + counter)
+       setCounter(state => state + 1)
+       }, 100000)
+     }, [counter])*/
 
     return <>
-        Hello, counter: {counter}  - fake: {fake}
+        Hello, counter: {counter} - fake: {fake}
         {/*<button onClick={() => setCounter(counter + 1)}>counter+</button>*/}
         {/*<button onClick={() => setFake(fake + 1)}>fake+</button>*/}
+    </>
+}
+// 3
+
+export const ResetEffectExample = () => {
+    const [counter, setCounter] = useState(1)
+
+    useEffect(() => {
+        console.log('Effect occurred' + counter)
+
+        return () => {
+            console.log('Reset Effect...')
+        }
+
+    }, [counter])
+
+    const increase = () => {
+        setCounter(counter + 1)
+    }
+
+    return <>
+        Hello, counter: {counter}
+        <button onClick={increase}>counter+</button>
     </>
 }
 

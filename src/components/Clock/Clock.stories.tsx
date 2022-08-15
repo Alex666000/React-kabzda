@@ -5,6 +5,10 @@ export default {
     component: Clock
 }
 
-export const ClockHistory = () => {
-    return <Clock/>
+export const AnalogClockHistory = () => {
+    return <Clock mode={'analog'}/>
+}
+
+export const DigitalClockHistory = () => {
+    return <Clock mode={'digital'}/>
 }
