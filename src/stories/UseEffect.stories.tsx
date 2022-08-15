@@ -72,8 +72,8 @@ export const SetTimeoutExample1 = () => {
         {/*<button onClick={() => setFake(fake + 1)}>fake+</button>*/}
     </>
 }
-// 3
 
+// 3
 export const ResetEffectExample = () => {
     const [counter, setCounter] = useState(1)
 
@@ -81,7 +81,7 @@ export const ResetEffectExample = () => {
         console.log('Effect occurred' + counter)
 
         return () => {
-            console.log('Reset Effect...')
+            console.log('Reset Effect'  + counter)
         }
 
     }, [counter])
@@ -95,4 +95,49 @@ export const ResetEffectExample = () => {
         <button onClick={increase}>counter+</button>
     </>
 }
+// 4 - отслеживаем события нажатия на клавиши за пределами К-ты:
+export const KeyTrackerExample = () => {
+    const [text, setText] = useState(1)
+
+    console.log('rendered with' + text)
+
+    useEffect(() => {
+        const handler = (e: any) => {
+            console.log(e.key)
+            // @ts-ignore
+            setText((state) => state + e.key )
+        }
+        // при уходе с вкладки надо очищать мусор:
+       window.addEventListener('keypress', handler)
+        // отписка = очистка мусора:
+        return () => {
+           window.removeEventListener('keypress', handler)
+        }
+
+    }, [])
+
+    return <>
+       Text: {text}
+    </>
+}
+// 5
+export const SetTimeoutExample = () => {
+    const [text, setText] = useState('')
+
+    console.log('rendered with' + text)
+
+    useEffect(() => {
+      const timeoutId = setTimeout(() => {
+            setText('3 sec.passed')
+        },3000)
+
+        return () => {
+            clearTimeout(timeoutId)
+        }
+    }, [])
+    return <>
+        Text: {text}
+    </>
+}
+
 
